@@ -4,7 +4,7 @@ void setup() {
   Serial.begin (9600);   // serial port begin
   prox_sens_init(PROX_SENS_TRIGGER_PIN, PROX_SENS_ECHO_PIN);
   light_sens_init(LIGHT_SENS_PIN);
-  smart_leds_init(1, SMART_LEDS_PIN, SMART_LEDS_NUMBER);
+  smart_leds_init(1, SMART_LEDS_NUMBER);
 
   PROX_SENS_CONNECTED = prox_sens_check_if_connected(PROX_SENS_TRIGGER_PIN, PROX_SENS_ECHO_PIN);
   LIGHT_SENS_CONNECTED = light_sens_check_if_connected(LIGHT_SENS_PIN);

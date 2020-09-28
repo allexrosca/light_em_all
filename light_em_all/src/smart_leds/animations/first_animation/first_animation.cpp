@@ -1,13 +1,12 @@
 #include "first_animation.h"
 
-void first_animation_init(const int smart_leds_pin, const int smart_leds_number) {
-    CRGB leds[smart_leds_number];
-    FastLED.addLeds<WS2812B, 5, GRB>(leds, smart_leds_number);
+CRGB leds[SMART_LEDS_NUMBER];
+void first_animation_init(const int smart_leds_number) {
+    FastLED.addLeds<WS2812B, SMART_LEDS_PIN, GRB>(leds, smart_leds_number); //smart_leds_pin should be used instead of 8
     FastLED.setBrightness(5);
 }
 
 void first_animation_run(const int smart_leds_number, const int charge_led_number) {
-    CRGB leds[smart_leds_number];
     for (int i = 0; i < smart_leds_number; i++) {
         leds[i] = CRGB::Green;
         FastLED.show();
@@ -42,12 +41,6 @@ void first_animation_run(const int smart_leds_number, const int charge_led_numbe
         FastLED.show();
         delay(20);
     }
-    delay(200);
-
-    fill_solid(leds, charge_led_number, CRGB::Black);
-    delay(500);
-    fill_solid(leds, charge_led_number, CRGB::White);
-    delay(1000);
 
     delay(200);
 }

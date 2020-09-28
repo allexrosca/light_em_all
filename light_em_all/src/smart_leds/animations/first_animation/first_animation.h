@@ -4,5 +4,6 @@
 #define FASTLED_INTERNAL
 #include <FastLED.h>
 #include <Arduino.h>
+#include "..\..\..\..\config.h"
 
 #endif
