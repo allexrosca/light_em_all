@@ -19,6 +19,7 @@ void loop() {
         light_sens_output = light_sens_run(LIGHT_SENS_PIN);
     }
 
+    // if there's no light or the light sens is not connected
     if (light_sens_output == 1 || light_sens_output == -1) {
         if (PROX_SENS_CONNECTED) {
             long prox_sens_output = prox_sens_run(PROX_SENS_TRIGGER_PIN, PROX_SENS_ECHO_PIN);
@@ -37,16 +38,14 @@ void loop() {
             }
             else if (prox_sens_output >= 1000) {
                 // value too big -> error -> ignore this case
-                Serial.print("value too big -> error -> ignore this case");
             }
         }
         else {
-          Serial.print("no prox sens");
+            // no prox sens connected
         }
     }
     else {
-        Serial.print("light");
-        // 
+        // too much light in the room -> do nothing
     }
 
     //  smart_leds_run(1, SMART_LEDS_NUMBER);
