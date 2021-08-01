@@ -41,6 +41,4 @@ void first_animation_run(const int smart_leds_number, const int charge_led_numbe
         FastLED.show();
         delay(20);
     }
-
-    delay(200);
 }

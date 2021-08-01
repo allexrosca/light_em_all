@@ -8,6 +8,6 @@ constexpr int PROX_SENS_TRIGGER_PIN = 11; // output from arduino
 constexpr int PROX_SENS_ECHO_PIN = 12; // input for arduino (output from sensor)
 
 // OTHERS
-constexpr int SMART_LEDS_NUMBER = 50;
+constexpr int SMART_LEDS_NUMBER = 178;
 
 #endif
