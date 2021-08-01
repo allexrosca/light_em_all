@@ -5,9 +5,11 @@ void setup() {
     prox_sens_init(PROX_SENS_TRIGGER_PIN, PROX_SENS_ECHO_PIN);
     light_sens_init(LIGHT_SENS_PIN);
     smart_leds_init(1, SMART_LEDS_NUMBER);
+    sound_sens_init(SOUND_SENS_PIN);
 
     PROX_SENS_CONNECTED = prox_sens_check_if_connected(PROX_SENS_TRIGGER_PIN, PROX_SENS_ECHO_PIN);
     LIGHT_SENS_CONNECTED = light_sens_check_if_connected(LIGHT_SENS_PIN);
+    SOUND_SENS_CONNECTED = sound_sens_check_if_connected(SOUND_SENS_PIN);
 
     delay(200);
 }
@@ -26,14 +28,22 @@ void loop() {
 
             Serial.print("Proximity sensor: ");
             Serial.print(prox_sens_output);
-            Serial.print(" cm\n");
+            Serial.println(" cm\n");
 
+            // person very close -> light all lights at full brightness
             if (prox_sens_output < 100) {
-                // person very close -> light all lights at full brightness
                 Serial.print("person very close -> light all lights at full brightness");
             }
+            // run normal
             else if (prox_sens_output < 1000) {
-                // run normal
+                if (SOUND_SENS_CONNECTED) {
+                    int x = sound_sens_run(SOUND_SENS_PIN);
+                    Serial.println(x);
+                    if (x) {
+                        Serial.println("sound!");
+                    }
+                    // run smart leds rocket effect
+                }
                 Serial.print("run normal");
             }
             else if (prox_sens_output >= 1000) {
@@ -50,5 +60,5 @@ void loop() {
 
     //  smart_leds_run(1, SMART_LEDS_NUMBER);
     Serial.println();
-    delay(1000);
+    delay(100);
 }
